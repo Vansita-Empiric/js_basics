@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Closure</title>
+  </head>
+  <body>
+    <button id="pink">Pink</button>
+    <button id="grey">Grey</button>
+  </body>
+  <script>
+    // lexical scoping
+
+    // function init() {
+    //     let name = "Mozilla";
+    //     function displayName() {
+    //         console.log(name);
+    //     }
+    //     displayName()
+    // }
+    // init()
+
+    // function outer() {
+    //     let userName = "Vansita"
+    //     function inner() {
+    //         console.log("first ",userName);
+    //     }
+    //     function innerTwo() {
+    //         console.log("Second ",userName);
+    //     }
+    //     inner()
+    //     innerTwo()
+    // }
+    // outer()
+    // console.log(userName);
+  </script>
+  <script>
+    // Closure
+
+    // function makeFunc() {
+    //   const name = "Mozilla";
+    //   function displayName() {
+    //     console.log(name);
+    //   }
+    //   return displayName;
+    // }
+    // const myFunc = makeFunc();
+    // myFunc();
+
+    // document.getElementById('pink').onclick = function() {
+    //     document.body.style.backgroundColor = 'pink'
+    // }
+
+    // document.getElementById('grey').onclick = function() {
+    //     document.body.style.backgroundColor = 'grey'
+    // }
+
+    function clickHandler(color){
+        return function() {
+            document.body.style.backgroundColor = `${color}`
+        }
+    }
+    document.getElementById('pink').onclick = clickHandler('pink')
+    document.getElementById('grey').onclick = clickHandler('grey')
+  </script>
+</html>

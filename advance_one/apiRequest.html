@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Request</title>
+  </head>
+  <body style="background-color: #212121; color: azure" align="center">
+    <button type="submit" id="subt">Get Data</button><br />
+    <button id="yt">
+      <a id="a2" href="https://www.google.com/" target="_blank">Go to You Tube</a>
+    </button>
+    <br />
+    <img id="img1" />
+    <div id="result"></div>
+    <a id="a1"></a>
+  </body>
+  <script>
+    const submit = document.querySelector("#subt");
+    const youTube = document.querySelector("#yt");
+    const requestURL = "https://api.github.com/users/hiteshchoudhary";
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", requestURL);
+
+    submit.addEventListener("click", function (e) {
+      e.preventDefault();
+      xhr.onreadystatechange = function () {
+        const image = document.querySelector("#img1");
+        const anchor = document.querySelector("#a1");
+
+        //console.log(xhr.readyState);
+        if (xhr.readyState === 4) {
+          const data = JSON.parse(this.responseText);
+          image.src = data.avatar_url;
+          anchor.href = data.blog;
+
+          document.getElementById(
+            "result"
+          ).innerHTML = `Followers: ${data.followers}`;
+          document.getElementById("a1").innerHTML = `Click me`;
+        }
+      };
+
+      xhr.send();
+    });
+
+    // youTube.addEventListener("click", function (e) {
+    //   e.preventDefault();
+    //   let anchor = document.querySelector("#a2");
+        
+    //   if (anchor.href == "https://www.google.com/") {
+    //       console.log("iinside if");
+
+    //     xhr.onreadystatechange = function () {
+    //       if(xhr.readyState === 4) {
+    //           const data = JSON.parse(this.responseText);
+    //            anchor.href = "https://www.youtube.com/c/HiteshChoudharydotcom";
+    //       console.log("helo vansita",data);
+
+    //       }
+    //     };
+    //     xhr.open("GET", requestURL);
+    //     xhr.send();
+    //   } else {
+    //     console.log("Youtube clicked");
+    //     console.log(anchor.href)
+    //     anchor.click();
+    //   }
+    // });
+  </script>
+</html>
